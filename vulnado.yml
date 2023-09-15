@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulnado-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vulnado
+  template:
+    metadata:
+      labels:
+        app: vulnado
+    spec:
+      containers:
+        - name: vulnado
+          image: gowtham47/vulnado:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: PGPASSWORD
+              value: vulnado
+            - name: PGDATABASE
+              value: vulnado
+            - name: PGHOST
+              value: db:5432
+            - name: PGUSER
+              value: postgres
