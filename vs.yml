@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: java-app-vs
+spec:
+  hosts:
+    - "*" # This will match any host
+  gateways:
+    - java-app  # Reference to the Gateway created above
+  http:
+    - route:
+        - destination:
+            host: client-service # The name of your service in Kubernetes
+            port:
+              number: 8080 # The port your service is listening on
