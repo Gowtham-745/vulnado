@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          image: gowtham47/postgres:latest
+          env:
+            - name: POSTGRES_PASSWORD
+              value: vulnado
+            - name: POSTGRES_DB
+              value: vulnado
